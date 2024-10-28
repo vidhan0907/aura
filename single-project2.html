@@ -1,0 +1,518 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>PRODUCT Aura - Timeless Old-School Clothing for Elegant Style | High-Quality Fashion</title>
+    <meta name="description" content="">
+    <meta name="msapplication-tap-highlight" content="yes" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <!-- Google Web Font -->
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lekton:400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <!--  Bootstrap 3-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- OWL Carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.css">
+
+    <!--  Slider -->
+    <link rel="stylesheet" href="css/jquery.kenburnsy.css">
+
+    <!-- Animate -->
+    <link rel="stylesheet" href="css/animate.css">
+
+    <!-- Web Icons Font -->
+    <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="css/iconmoon.css">
+    <link rel="stylesheet" href="css/et-line.css">
+    <link rel="stylesheet" href="css/ionicons.css">
+
+    <!-- Magnific PopUp -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Tabs -->
+    <link rel="stylesheet" type="text/css" href="css/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="css/tabstyles.css" />
+
+    <!-- Loader Style -->
+    <link rel="stylesheet" href="css/loader-1.css">
+
+    <!-- Costum Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/ico" href="image-removebg-preview (2).png">
+
+    <!-- Modernizer & Respond js -->
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div class="cover"></div>
+
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="image-removebg-preview (2).png" height="80px" width="100px" alt="Logo">
+                </a>
+            </div>
+            <!-- Cart Icon in Navbar -->
+            <button onclick="openCart()" class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </button>
+
+            <!-- Cart Modal -->
+            <div id="cart-modal" class="cart-modal">
+                <div class="cart-content">
+                    <h2>Your Cart</h2>
+                    <ul id="cart-items"></ul>
+                    <p class="total">Total: $<span id="cart-total">0.00</span></p>
+                    <button onclick="checkout()" class="checkout-btn">Checkout</button>
+                    <button onclick="closeCart()" class="close-btn">Close</button>
+                </div>
+            </div>
+
+            <style>
+                /* Cart Icon */
+                /* Reset styles for buttons and modal */
+                button,
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    outline: none;
+                    border: none;
+                    background: none;
+                    font-family: inherit;
+                }
+
+                /* Cart Icon */
+                .cart-icon {
+                    margin-top: 35px;
+                    margin-left: 50px;
+                    font-size: 1.4em;
+                    cursor: pointer;
+                    color: #333;
+                    position: relative;
+                }
+
+                .cart-icon span {
+                    background: #ff6347;
+                    color: white;
+                    border-radius: 50%;
+                    padding: 2px 8px;
+                    font-size: 0.8em;
+                    position: absolute;
+                    top: -10px;
+                    right: -10px;
+                }
+
+                /* Cart Modal Overlay */
+                .cart-modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.6);
+                    align-items: center;
+                    justify-content: center;
+                    animation: fadeIn 0.3s ease;
+                }
+
+                /* Cart Content */
+                .cart-content {
+                    background: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    width: 320px;
+                    text-align: center;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                    animation: slideUp 0.3s ease;
+                }
+
+                /* Cart Items */
+                .cart-content ul {
+                    list-style-type: none;
+                    max-height: 200px;
+                    overflow-y: auto;
+                    margin-bottom: 15px;
+                    text-align: left;
+                }
+
+                .cart-content li {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 8px 0;
+                    border-bottom: 1px solid #f0f0f0;
+                    font-size: 0.9em;
+                }
+
+                /* Total and Buttons */
+                .total {
+                    font-weight: bold;
+                    margin-top: 10px;
+                    color: #333;
+                }
+
+                .checkout-btn,
+                .close-btn {
+                    display: inline-block;
+                    margin-top: 10px;
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    margin-left: 30px;
+                    margin-right: 30px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    transition: background-color 0.3s ease, color 0.3s ease;
+                }
+
+                .checkout-btn {
+                    background-color: #ff6347;
+                    color: white;
+                }
+
+
+
+                .checkout-btn:hover {
+                    background-color: #ff4500;
+                }
+
+                .close-btn {
+                    background-color: #ddd;
+                    color: #333;
+                    margin-left: 10px;
+                }
+
+                .close-btn:hover {
+                    background-color: #bbb;
+                }
+
+                /* Animations */
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+
+                    to {
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes slideUp {
+                    from {
+                        transform: translateY(20px);
+                    }
+
+                    to {
+                        transform: translateY(0);
+                    }
+                }
+            </style>
+            <script>
+                let cart = [];
+
+                function openCart() {
+                    document.getElementById("cart-modal").style.display = "flex";
+                    displayCartItems();
+                }
+
+                function closeCart() {
+                    document.getElementById("cart-modal").style.display = "none";
+                }
+
+                function addToCart(item, price) {
+                    const cartItem = cart.find(i => i.name === item);
+                    if (cartItem) {
+                        cartItem.quantity++;
+                    } else {
+                        cart.push({ name: item, price: price, quantity: 1 });
+                    }
+                    updateCart();
+                }
+
+                function updateCart() {
+                    document.getElementById("cart-count").innerText = cart.length;
+                    let total = 0;
+                    cart.forEach(item => total += item.price * item.quantity);
+                    document.getElementById("cart-total").innerText = total.toFixed(2);
+                }
+
+                function displayCartItems() {
+                    const cartItems = document.getElementById("cart-items");
+                    cartItems.innerHTML = "";
+                    cart.forEach((item, index) => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+            <span>${item.name} - $${item.price} x ${item.quantity}</span>
+            <button onclick="removeItem(${index})" style="color: #ff6347; cursor: pointer;">Remove</button>
+        `;
+                        cartItems.appendChild(li);
+                    });
+                }
+
+                function removeItem(index) {
+                    cart.splice(index, 1);
+                    updateCart();
+                    displayCartItems();
+                }
+
+                function checkout() {
+                    alert("Proceeding to checkout...");
+                    cart = []; // Empty the cart after checkout
+                    updateCart();
+                    closeCart();
+                }
+
+
+            </script>
+
+            <!-- Menu Hamburger (Default) -->
+            <button class="main-menu-indicator" id="open-button">
+                <span class="line"></span>
+            </button>
+
+            <div class="menu-wrap" style="background-image: url(img/nav_bg.jpg)">
+                <div class="menu-content">
+                    <div class="navigation">
+                        <span class="pe-7s-close close-menu" id="close-button"></span>
+                        <div class="search-wrap js-ui-search">
+                            <input class="js-ui-text" type="text" placeholder="Search Here...">
+                            <span class="eks js-ui-close"></span>
+                        </div>
+                    </div>
+                    <nav class="menu">
+                        <div class="menu-list">
+                            <ul>
+                                <li class="menu-item-has-children"><a href="index.html">Home</a>
+                                    
+                                </li>
+                                <li class="menu-item-has-children"><a href="#container margin-top history">History</a>
+                                </li>
+                                <li class="menu-item-has-children"><a href="#container margin-top why">Why Choose Us</a>
+                                
+                                </li>
+                                <li><a href="container margin-top apparel">Apparels</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                    <div class="hidden-xs">
+                        <div class="menu-social-media">
+                            <ul>
+                                <li><a href="#"><i class="iconmoon-facebook"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-twitter"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-dribbble3"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-pinterest"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-linkedin2"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="menu-information">
+                            <ul>
+                                <li><span>T:</span> 003 124 115</li>
+                                <li><span>E:</span> info@mail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Menu Hamburger (Default) -->
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="single-project-slider">
+            <div class="owl-carousel single-slider">
+                <div><img class="img-responsive center-block" src="https://www.snitch.co.in/cdn/shop/files/54fc8caa40c2daec97d29d207314f36e.webp?v=1725345553&width=1800" alt="slider" height="auto" width="300px"></div>
+                <div><img class="img-responsive center-block" src="https://www.snitch.co.in/cdn/shop/files/7343a1fa05493609ccbca5c48e830d67.webp?v=1725345553&width=1800" alt="slider" height="auto" width="300px"></div>
+                <div><img class="img-responsive center-block" src="sale.jpg" alt="slider" height="450px" width="1170px"></div>
+            </div>
+            <div class="single-controls">
+                <span class="arrow-left"><a class="prev-slide" href="javascript:void(0)"><i class="pe-7s-angle-left"></i></a></span>
+                <span class="arrow-right"><a class="next-slide" href="javascript:void(0)"><i class="pe-7s-angle-right"></i></a></span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="single-portfolio-wrapper">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <h1>LINEN BLEND SHIRT</h1>
+                    <span class="info">WHITE</span>
+                    <p>Give your everyday wardrobe an effortless appeal with this classy white cotton linen blend shirt. Designed in a slim fit, this shirt is known for its endless versatility. A look that bridges dressy and casual, with full sleeve and spread, it is perfect to wear alone or as an outer layer.</p>
+                    <button onclick="addToCart('Product Name', 10.00)" class="add-to-cart-btn">Add to Cart</button>
+                    <style>
+                        .add-to-cart-btn {
+                            font-weight: 500;
+                        }
+                    </style> </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="portfolio-controls">
+            <div class="btn-project home-btn">
+                <a href="index.html" data-hover="Home">
+                    <i class="pe-7s-keypad"></i>
+                </a>
+            </div>
+            <div class="btn-project forward-btn">
+                <a href="#" data-hover="Next">
+                    <i class="pe-7s-angle-right right"></i>
+                </a>
+            </div>
+            <div class="btn-project back-btn">
+                <a href="#" data-hover="Previous">
+                    <i class="pe-7s-angle-left left"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container margin-top">
+        <div class="similar-project">
+            <h4>Similar Projects</h4>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="img">
+                        <img src="img/home-portfolio/img_6.jpg" alt="Portfolio Item">
+                        <div class="overlay-thumb">
+                            <a href="javascript:void(0)" class="like-product">
+                                <i class="ion-ios-heart-outline"></i>
+                                <span class="like-product">Liked</span>
+                                <span class="output">256</span>
+                            </a>
+                            <div class="details">
+                                <span class="title">STYLE FASHION</span>
+                                <span class="info">NEW BAG & STYLE FASHION</span>
+                            </div>
+                            <span class="btnBefore"></span>
+                            <span class="btnAfter"></span>
+                            <a class="main-portfolio-link" href="single-project.html"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="img">
+                        <img src="img/home-portfolio/img_7.jpg" alt="Portfolio Item">
+                        <div class="overlay-thumb">
+                            <a href="javascript:void(0)" class="like-product">
+                                <i class="ion-ios-heart-outline"></i>
+                                <span class="like-product">Liked</span>
+                                <span class="output">256</span>
+                            </a>
+                            <div class="details">
+                                <span class="title">STYLE FASHION</span>
+                                <span class="info">NEW BAG & STYLE FASHION</span>
+                            </div>
+                            <span class="btnBefore"></span>
+                            <span class="btnAfter"></span>
+                            <a class="main-portfolio-link" href="single-project.html"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="img">
+                        <img src="img/home-portfolio/img_8.jpg" alt="Portfolio Item">
+                        <div class="overlay-thumb">
+                            <a href="javascript:void(0)" class="like-product">
+                                <i class="ion-ios-heart-outline"></i>
+                                <span class="like-product">Liked</span>
+                                <span class="output">256</span>
+                            </a>
+                            <div class="details">
+                                <span class="title">STYLE FASHION</span>
+                                <span class="info">NEW BAG & STYLE FASHION</span>
+                            </div>
+                            <span class="btnBefore"></span>
+                            <span class="btnAfter"></span>
+                            <a class="main-portfolio-link" href="single-project.html"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer margin-top">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-2 col-sm-4 col-xs-12">
+                        <div class="footer-inner">
+                            <div class="footer-content">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="image-removebg-preview (2).png" alt="Logo">
+                                    </a>
+                                </div>
+                                <h4>AURA</h4>
+                                    <address>Redefine Your Charisma</address>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-md-push-8 col-sm-4 col-xs-12">
+                        <div class="footer-inner">
+                            <div class="footer-content">
+                               <h4>CONTACT INFO</h4>
+                                <p>
+                                    Ranveer Singh Chopra
+                                    <br>
+                                    Vidhan Agarwal
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="footer-inner">
+                            <div class="footer-content">
+                            <ul class="social-media">
+                                <li><a href="#"><i class="iconmoon-facebook"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-twitter"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-flickr2"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-dribbble3"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-pinterest"></i></a></li>
+                                <li><a href="#"><i class="iconmoon-linkedin2"></i></a></li>
+                            </ul>
+                            <span class="copyright-mark">&copy; 2024 AURA, ALL RIGHTS RESERVED</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="javascript:void(0)" class="scroll-top" id="scroll-top"><i class="pe-7s-angle-up"></i></a>
+
+    <script src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script data-pace-options='{ "ajax": false }' src="js/vendor/pace.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/classie.js"></script>
+    <script src="js/vendor/isotope.pkgd.min.js"></script>
+    <script src="js/vendor/jquery.velocity.min.js"></script>
+    <script src="js/vendor/jquery.kenburnsy.min.js"></script>
+    <script src="js/vendor/textslide.js"></script>
+    <script src="js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="js/vendor/tabs.js"></script>
+    <script src="js/ef-slider.js"></script>
+    <script src="js/vendor/owl.carousel.min.js"></script>
+    <script src="js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="js/vendor/jquery.social-buttons.min.js"></script>
+    <script src="js/vendor/wow.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ajax.js"></script>
+</body>
+
+</html>
